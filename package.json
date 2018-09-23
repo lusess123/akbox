@@ -1,0 +1,31 @@
+{
+  "name": "akboxes",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap":"lerna bootstrap",
+    "list":"lerna list",
+    "mui-host":"cd packages/hosts/umihost;npm run dev ;"
+  },
+  "workspaces": [
+    "packages/hosts/*",
+    "packages/libs/**",
+    "packages/apps/**"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lusess123/akbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lusess123/akbox/issues"
+  },
+  "homepage": "https://github.com/lusess123/akbox#readme",
+  "devDependencies": {
+    "lerna": "^3.4.0"
+  }
+}
