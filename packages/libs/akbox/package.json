@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  “description”:"akbox 是 面向对象的,只支持typescript的,分布式的状态管理框架",
+  "author":"lusess123",
+  "license"""
   "dependencies": {
     "jquery": "^3.3.1",
     "rxjs": "^6.3.2"
@@ -10,5 +13,15 @@
   "devDependencies": {
     "@types/jquery": "^3.3.9",
     "circular-json": "^0.5.7"
-  }
+  },
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/lusess123/akbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lusess123/akbox/issues"
+  },
+  "homepage": "https://github.com/lusess123/akbox#readme",
 }
