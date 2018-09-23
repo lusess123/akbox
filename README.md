@@ -7,4 +7,4 @@ yarn
 
 
 
-yarn run mui-host 
+yarn run umi-host 
