@@ -1,10 +1,8 @@
-# akbox
-OOP组件化的状态管理框架
+#  akbox
+OOP组件化的状态管理框架， 详情
 
-#start
+#  启动查看例子
 
-yarn 
+   yarn 
 
-
-
-yarn run umi-host 
+   yarn run umi-host 
