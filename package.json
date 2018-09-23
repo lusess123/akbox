@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap":"lerna bootstrap",
     "list":"lerna list",
-    "mui-host":"cd packages/hosts/umihost;npm run dev ;"
+    "umi-host":"cd packages/hosts/umihost;npm run dev ;"
   },
   "workspaces": [
     "packages/hosts/*",
