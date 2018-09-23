@@ -8,9 +8,24 @@ let Router = DefaultRouter;
 
 let routes = [
   {
+    "path": "/akbox/aa",
+    "exact": true,
+    "component": require('../akbox/aa.jsx').default
+  },
+  {
     "path": "/akbox",
     "exact": true,
     "component": require('../akbox/index.tsx').default
+  },
+  {
+    "path": "/akbox/todolist",
+    "exact": true,
+    "component": require('../akbox/todolist.tsx').default
+  },
+  {
+    "path": "/akbox/vm",
+    "exact": true,
+    "component": require('../akbox/vm.tsx').default
   },
   {
     "path": "/",
