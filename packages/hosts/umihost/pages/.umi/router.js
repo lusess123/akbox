@@ -8,6 +8,11 @@ let Router = DefaultRouter;
 
 let routes = [
   {
+    "path": "/akbox",
+    "exact": true,
+    "component": require('../akbox/index.tsx').default
+  },
+  {
     "path": "/",
     "exact": true,
     "component": require('../index.tsx').default
