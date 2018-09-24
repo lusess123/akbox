@@ -19,6 +19,7 @@ export interface IReact {
     pSender(): React.ReactNode;
 }
 export interface IVm {
+    
     ReactType: any;
 
 }
