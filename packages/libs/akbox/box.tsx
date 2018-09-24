@@ -555,9 +555,13 @@ export class BoxVm {
     public getOriValue(): string { return this.fOriValue; }
 
     public constructor(config?: IBoxVmConfig) {
-
+        if(!config || !config.UniId){
+            this.UniId = "-BoxVm-"+ event.App.getUniId();
+        }
         if (config) {
-            this.UniId = config.UniId;
+            if(config.UniId){
+              this.UniId = config.UniId;
+            }
             this.IsMulit = config.IsMulit;
             this.Height = config.Height;
             this.IsListItem = config.IsListItem;

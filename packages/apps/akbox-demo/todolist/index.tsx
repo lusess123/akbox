@@ -44,6 +44,7 @@ export class AppBoxVm extends BoxVm implements IReactAppBoxVm {
 
     public constructor(config?: IAppBoxConfig) {
         super(config);
+       debugger;
         this.AddTodoObj = new AddTodo.AddTodoBoxVm({ UniId: this.UniId, Text: "新增" });
         this.FooterObj = new Footer.FooterBoxVm({ UniId: this.UniId, Filter: this.btnStatusTitle });
         this.TodoObjList = [1, 2, 3].map((index) => {
