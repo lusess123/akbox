@@ -1,4 +1,4 @@
-﻿import * as dom from "./dom"
+﻿import * as dom from "./box"
 import ReactDOM from "react-dom";
 
 

@@ -1,6 +1,6 @@
 ﻿
 import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/dom";
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/box";
 
 export class TodoBoxReact extends BoxReact<TodoDomProps> {
 

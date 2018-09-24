@@ -1,5 +1,5 @@
 import React from 'react'
-import * as dom from 'akbox/dom'
+import * as box from 'akbox/box'
 
 
 export default ()=>{
@@ -7,7 +7,7 @@ export default ()=>{
      return <div>{window["cccc"].intoDom()}</div>
 }
 
-@dom.view({com:(p)=>{return <h1>{p.Vm.Name}</h1>}})
-class  TestDom extends dom.BoxVm {
+@box.view({com:(p)=>{return <h1>{p.Vm.Name}</h1>}})
+class  TestDom extends box.BoxVm {
      Name = "123";
 }

@@ -1,5 +1,5 @@
 ﻿import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps ,view} from "akbox/dom";
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps ,view} from "akbox/box";
 import * as AddTodo from './AddTodoDom'
 import * as Footer from './FooterDom'
 import * as Todo from './TodoDom'
