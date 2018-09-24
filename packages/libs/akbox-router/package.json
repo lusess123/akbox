@@ -1,6 +1,6 @@
 {
   "name": "akbox-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "akbox与页面进行绑定",
   "main": "index.js",
   "scripts": {
@@ -13,5 +13,13 @@
     "antd": "^3.9.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lusess123/akbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lusess123/akbox/issues"
+  },
+  "homepage": "https://github.com/lusess123/akbox#readme"
 }
