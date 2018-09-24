@@ -1,5 +1,5 @@
 ﻿import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps ,view} from "akbox/box";
+import { BoxReact, Box, IBoxConfig, BoxProps ,view} from "akbox/box";
 import * as AddTodo from './AddTodoDom'
 import * as Footer from './FooterDom'
 import * as Todo from './TodoDom'
@@ -23,7 +23,7 @@ export class AppBoxReact extends BoxReact<AppBoxProps> {
    
 }
 
-export interface IReactAppBoxVm extends BoxVm {
+export interface IReactAppBoxVm extends Box {
     AddTodoObj: AddTodo.AddTodoBoxVm;
     FooterObj: Footer.FooterBoxVm;
     //TodoObjList: TodoDomFile.TodoDom.TodoDomVm[];
@@ -31,11 +31,11 @@ export interface IReactAppBoxVm extends BoxVm {
     toList(): Todo.TodoBoxVm[];
 }
 
-export interface IAppBoxConfig extends IBoxVmConfig {
+export interface IAppBoxConfig extends IBoxConfig {
 
 }
 @view({com:AppBoxReact})
-export class AppBoxVm extends BoxVm implements IReactAppBoxVm {
+export class AppBoxVm extends Box implements IReactAppBoxVm {
     //public ReactType = AppDomReact;
     public AddTodoObj: AddTodo.AddTodoBoxVm;
     public FooterObj: Footer.FooterBoxVm;

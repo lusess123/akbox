@@ -1,6 +1,6 @@
 ﻿
 import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/box";
+import { BoxReact, Box, IBoxConfig, BoxProps } from "akbox/box";
 import jQuery  from 'jquery'
 const $ = jQuery;
 export class AddTodoBoxReact extends BoxReact<AddTodoBoxProps>  {
@@ -26,17 +26,17 @@ export class AddTodoBoxReact extends BoxReact<AddTodoBoxProps>  {
 
 }
 
-export interface IReactAddTodoBoxVm extends BoxVm {
+export interface IReactAddTodoBoxVm extends Box {
     Text: string;
     add();
 }
 
-export interface IAddTodoBoxConfig extends IBoxVmConfig {
+export interface IAddTodoBoxConfig extends IBoxConfig {
     Text: string;
 
 }
 
-export class AddTodoBoxVm extends BoxVm implements IReactAddTodoBoxVm {
+export class AddTodoBoxVm extends Box implements IReactAddTodoBoxVm {
     public ReactType = AddTodoBoxReact;
     public Text: string;
 

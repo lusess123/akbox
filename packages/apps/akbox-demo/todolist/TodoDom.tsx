@@ -1,6 +1,6 @@
 ﻿
 import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/box";
+import { BoxReact, Box, IBoxConfig, BoxProps } from "akbox/box";
 
 export class TodoBoxReact extends BoxReact<TodoDomProps> {
 
@@ -17,18 +17,18 @@ export class TodoBoxReact extends BoxReact<TodoDomProps> {
         
     }
 
-    export interface IReactTodoBoxVm extends BoxVm {
+    export interface IReactTodoBoxVm extends Box {
         onClick();
         Text: string;
         Completed: boolean;
     }
 
-    export interface ITodoBoxConfig extends IBoxVmConfig {
+    export interface ITodoBoxConfig extends IBoxConfig {
          Text: string;
          Completed?: boolean;
     }
 
-    export class TodoBoxVm extends BoxVm implements IReactTodoBoxVm {
+    export class TodoBoxVm extends Box implements IReactTodoBoxVm {
         public ReactType = TodoBoxReact;
         public Text: string;
         public Completed: boolean;

@@ -1,18 +1,17 @@
 {
-  "name": "umihost",
+  "name": "akbox-router",
   "version": "1.0.0",
-  "description": "",
+  "description": "akbox与页面进行绑定",
   "main": "index.js",
   "scripts": {
-    "dev": "umi dev ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "akbox": "^1.0.0",
+    "antd": "^3.9.3",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "umi-plugin-react": "^1.0.0-0",
-    "umi": "^2.0.3"
+    "react-dom": "^16.5.2"
   }
 }

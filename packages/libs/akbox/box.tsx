@@ -34,7 +34,7 @@ export interface IFunDic {
 }
 
 export interface ITBoxFun {
-    (dom: BoxVm): JSX.Element;
+    (dom: Box): JSX.Element;
 }
 export interface ITBoxConfig {
     fun?: ITBoxFun;
@@ -70,7 +70,7 @@ const EmptyVm = {
  * @template S 
  * @template A 
  */
-export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<P,
+export class BoxReact<P extends BoxProps<Box>, S=any> extends React.Component<P,
     S> {
 
     private fIsNoChangeSign = false;
@@ -93,7 +93,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
         return this.props.Vm;
     }
 
-    public vM(): BoxVm {
+    public vM(): Box {
         return this.props.Vm;
     }
 
@@ -114,7 +114,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
         }
     }
 
-    public removeEvent(event?: string, vm?: BoxVm) {
+    public removeEvent(event?: string, vm?: Box) {
         if (!vm) {
             vm = this.props.Vm;
         }
@@ -159,7 +159,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
         }
     }
 
-    protected _tDom(dom: BoxVm, config?: ITBoxConfig): React.ReactNode {
+    protected _tDom(dom: Box, config?: ITBoxConfig): React.ReactNode {
         if (config && config.fun) {
             return config.fun(dom);
         } else {
@@ -221,7 +221,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
             this.fIsNoChangeSign = !a;
         });
     };
-    protected pUnInstall(vm?: BoxVm): void {
+    protected pUnInstall(vm?: Box): void {
         // this.removeEvent();
         if (vm) {
             // 这样是不行的 没准这个对象还有用呢 vm.getEmit("React").removeAllListeners(); alert("删除所有的事件");
@@ -229,7 +229,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
             // if (!vm.IsChange) {  vm.getEmit("React").removeAllListeners();
             vm
                 .getEmit("React")
-                .removeListener(BoxVm.fEVENT_CHANGE, this.fEventFun);
+                .removeListener(Box.fEVENT_CHANGE, this.fEventFun);
             //  vm.getEmit("React").removeAllListeners(); } if (!vm.IsListItem) {
             // vm.dispose(); }
         } else {
@@ -466,7 +466,7 @@ export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<
 }
 
 export interface IChangeEventFun {
-    (val: string, col: BoxVm): boolean;
+    (val: string, col: Box): boolean;
 }
 
 export interface IBoxVmChangeHandle {
@@ -474,7 +474,7 @@ export interface IBoxVmChangeHandle {
 }
 
 export interface ICustomRenderFun {
-    (vm: BoxVm): React.ReactElement<any>;
+    (vm: Box): React.ReactElement<any>;
 }
 
 export interface ITplReactFun<T> {
@@ -489,10 +489,10 @@ export interface IRegEvent {
 }
 
 export interface IRegEventBox extends IRegEvent {
-    BoxObj: BoxVm;
+    BoxObj: Box;
 }
 
-export interface IBoxVmConfig {
+export interface IBoxConfig {
     UniId?: string;
     IsMulit?: boolean;
     Height?: number;
@@ -510,7 +510,7 @@ export const view = ({com}:{com:any})=>(constructor: Function)=>{
 
 
 @view({com:BoxReact})
-export class BoxVm {
+export class Box {
 
     public static fEVENT_CHANGE: string = "event_change";
    // public ReactType: any = DomReact;
@@ -555,7 +555,7 @@ export class BoxVm {
 
     public getOriValue(): string { return this.fOriValue; }
 
-    public constructor(config?: IBoxVmConfig) {
+    public constructor(config?: IBoxConfig) {
         if(!config || !config.UniId){
             this.UniId = "-BoxVm-"+ event.App.getUniId();
         }
@@ -596,7 +596,7 @@ export class BoxVm {
         }
     }
 
-    public onCustomEvent(fun: Function, sender: BoxVm) {
+    public onCustomEvent(fun: Function, sender: Box) {
         this.pRegistAppEventByDom({ BoxObj: sender, Fun: fun, Name: "123" });
     }
 
@@ -658,7 +658,7 @@ export class BoxVm {
         //if (this.fEmit == null)    this.fEmit = new EventEmitter2();
         this
             .pGetEmit("React")
-            .removeAllListeners(BoxVm.fEVENT_CHANGE);
+            .removeAllListeners(Box.fEVENT_CHANGE);
     }
 
     public onChangeHandle(fun: IBoxVmChangeHandle): Function {
@@ -669,7 +669,7 @@ export class BoxVm {
         };
         return this
             .pGetEmit("React")
-            .addListener(BoxVm.fEVENT_CHANGE, _fun);
+            .addListener(Box.fEVENT_CHANGE, _fun);
         //  return _fun;
     }
 
@@ -715,7 +715,7 @@ export class BoxVm {
         this.IsChange = true;
         this
             .pGetEmit("React")
-            .emit(BoxVm.fEVENT_CHANGE, val, callback);
+            .emit(Box.fEVENT_CHANGE, val, callback);
     }
 
     public async asyncForceUpdate(val: string, ) {
@@ -783,7 +783,7 @@ export class BoxVm {
 
                 this
                     .pGetEmit("React")
-                    .emit(BoxVm.fEVENT_CHANGE, val, callback);
+                    .emit(Box.fEVENT_CHANGE, val, callback);
 
             }
             return _isCheck;
@@ -884,7 +884,7 @@ export class BoxVm {
 
 }
 
-export class BoxProps<T extends BoxVm> {
+export class BoxProps<T extends Box> {
     public Vm: T;
     public children?: any;
 }
@@ -900,7 +900,7 @@ export function _reg(name: string, path: string, src?: string) {
     }
     ioc.Ioc
         .Current()
-        .RegisterTypeSrc(name, BoxVm, path);
+        .RegisterTypeSrc(name, Box, path);
 }
 
 

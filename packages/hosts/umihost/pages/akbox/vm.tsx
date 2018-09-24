@@ -8,6 +8,6 @@ export default ()=>{
 }
 
 @box.view({com:(p)=>{return <h1>{p.Vm.Name}</h1>}})
-class  TestDom extends box.BoxVm {
+class  TestDom extends box.Box {
      Name = "123";
 }

@@ -1,6 +1,6 @@
 ﻿
 import React from 'React'
-import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/box";
+import { BoxReact, Box, IBoxConfig, BoxProps } from "akbox/box";
 export class FooterBoxReact extends BoxReact<FooterBoxProps>  {
     public pSender(): React.ReactNode {
         return (
@@ -33,18 +33,18 @@ export class FooterBoxReact extends BoxReact<FooterBoxProps>  {
 
 }
 
-export interface IReactFooterBoxVm extends BoxVm {
+export interface IReactFooterBoxVm extends Box {
 
     onFilterChange(filter: string);
     Filter?: string;
 }
 
-export interface IFooterBoxConfig extends IBoxVmConfig {
+export interface IFooterBoxConfig extends IBoxConfig {
     Filter?: string;
 
 }
 
-export class FooterBoxVm extends BoxVm implements IReactFooterBoxVm {
+export class FooterBoxVm extends Box implements IReactFooterBoxVm {
     public ReactType = FooterBoxReact;
     public Filter: string = "SHOW_ALL";
 
