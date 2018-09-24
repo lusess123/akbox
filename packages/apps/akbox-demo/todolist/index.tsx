@@ -1,10 +1,12 @@
 ﻿import React from 'React'
-import { DomReact, DomVm, IDomVmConfig, DomProps ,view} from "akbox/dom";
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps ,view} from "akbox/dom";
 import * as AddTodo from './AddTodoDom'
 import * as Footer from './FooterDom'
 import * as Todo from './TodoDom'
 
-export class AppDomReact extends DomReact<AppDomProps> {
+
+
+export class AppBoxReact extends BoxReact<AppBoxProps> {
 
     public pSender(): React.ReactElement<any> {
         return <div>
@@ -21,31 +23,31 @@ export class AppDomReact extends DomReact<AppDomProps> {
    
 }
 
-export interface IReactAppDomVm extends DomVm {
-    AddTodoObj: AddTodo.AddTodoDomVm;
-    FooterObj: Footer.FooterDomVm;
+export interface IReactAppBoxVm extends BoxVm {
+    AddTodoObj: AddTodo.AddTodoBoxVm;
+    FooterObj: Footer.FooterBoxVm;
     //TodoObjList: TodoDomFile.TodoDom.TodoDomVm[];
     btnStatusTitle: string;
-    toList(): Todo.TodoDomVm[];
+    toList(): Todo.TodoBoxVm[];
 }
 
-export interface IAppDomConfig extends IDomVmConfig {
+export interface IAppBoxConfig extends IBoxVmConfig {
 
 }
-@view({com:AppDomReact})
-export class AppDomVm extends DomVm implements IReactAppDomVm {
+@view({com:AppBoxReact})
+export class AppBoxVm extends BoxVm implements IReactAppBoxVm {
     //public ReactType = AppDomReact;
-    public AddTodoObj: AddTodo.AddTodoDomVm;
-    public FooterObj: Footer.FooterDomVm;
-    public TodoObjList: Todo.TodoDomVm[] = [];
+    public AddTodoObj: AddTodo.AddTodoBoxVm;
+    public FooterObj: Footer.FooterBoxVm;
+    public TodoObjList: Todo.TodoBoxVm[] = [];
     public btnStatusTitle: string = "SHOW_ALL";
 
-    public constructor(config?: IAppDomConfig) {
+    public constructor(config?: IAppBoxConfig) {
         super(config);
-        this.AddTodoObj = new AddTodo.AddTodoDomVm({ UniId: this.UniId, Text: "新增" });
-        this.FooterObj = new Footer.FooterDomVm({ UniId: this.UniId, Filter: this.btnStatusTitle });
+        this.AddTodoObj = new AddTodo.AddTodoBoxVm({ UniId: this.UniId, Text: "新增" });
+        this.FooterObj = new Footer.FooterBoxVm({ UniId: this.UniId, Filter: this.btnStatusTitle });
         this.TodoObjList = [1, 2, 3].map((index) => {
-            return new Todo.TodoDomVm({ Text: "文本" + index, UniId: this.UniId });
+            return new Todo.TodoBoxVm({ Text: "文本" + index, UniId: this.UniId });
         });
 
         this.listenAppEvent("AddTodoDomVm-add", this.UniId, (text: string) => {
@@ -62,11 +64,11 @@ export class AppDomVm extends DomVm implements IReactAppDomVm {
     }
 
     public add(text: string) {
-        this.TodoObjList.push(new Todo.TodoDomVm({ Text: text, UniId: this.UniId }));
+        this.TodoObjList.push(new Todo.TodoBoxVm({ Text: text, UniId: this.UniId }));
         this.forceUpdate("");
     }
 
-    public toList(): Todo.TodoDomVm[] {
+    public toList(): Todo.TodoBoxVm[] {
         return this.TodoObjList.filter(item => {
             item.IsChange = true;
             switch (this.btnStatusTitle) {
@@ -82,7 +84,7 @@ export class AppDomVm extends DomVm implements IReactAppDomVm {
     }
 
 }
-export class AppDomProps extends DomProps<IReactAppDomVm>{
+export class AppBoxProps extends BoxProps<IReactAppBoxVm>{
 }
 
 

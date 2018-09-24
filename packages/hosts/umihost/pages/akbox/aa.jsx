@@ -3,6 +3,7 @@ import * as event from "akbox/event";
 
 event.App.GetAppEvent().on("xxxx", (a) => {
   alert(a);
+  
 });
 
 
@@ -40,6 +41,8 @@ export default () => {
     <button onClick={fun}>jsxx触发事件</button>
   </div>
 }
+
+
 
 
 

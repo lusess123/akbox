@@ -105,7 +105,7 @@ import ReactDOM from "react-dom";
         }
     }
 
-    export function ReactByOpt(opt: dom.DomVm) {
+    export function ReactByOpt(opt: dom.BoxVm) {
         const _reactType = (opt as any).ReactType?(opt as any).ReactType:opt.constructor["ReactType"];
         return _reactType ;
     }

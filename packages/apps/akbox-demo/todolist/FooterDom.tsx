@@ -1,8 +1,8 @@
 ﻿
 import React from 'React'
-import { DomReact, DomVm, IDomVmConfig, DomProps } from "akbox/dom";
-export class FooterDomReact extends DomReact<FooterDomProps>  {
-    public pSender(): React.ReactElement<any> {
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/dom";
+export class FooterBoxReact extends BoxReact<FooterBoxProps>  {
+    public pSender(): React.ReactNode {
         return (
             <p>
                 Show:
@@ -33,19 +33,19 @@ export class FooterDomReact extends DomReact<FooterDomProps>  {
 
 }
 
-export interface IReactFooterDomVm extends DomVm {
+export interface IReactFooterBoxVm extends BoxVm {
 
     onFilterChange(filter: string);
     Filter?: string;
 }
 
-export interface IFooterDomConfig extends IDomVmConfig {
+export interface IFooterBoxConfig extends IBoxVmConfig {
     Filter?: string;
 
 }
 
-export class FooterDomVm extends DomVm implements IReactFooterDomVm {
-    public ReactType = FooterDomReact;
+export class FooterBoxVm extends BoxVm implements IReactFooterBoxVm {
+    public ReactType = FooterBoxReact;
     public Filter: string = "SHOW_ALL";
 
     public onFilterChange(filter: string) {
@@ -54,7 +54,7 @@ export class FooterDomVm extends DomVm implements IReactFooterDomVm {
         this.emitAppEvent("Filter-Click", this.UniId, filter);
     }
 
-    public constructor(config?: IFooterDomConfig) {
+    public constructor(config?: IFooterBoxConfig) {
         super(config);
         if (config) {
             if (config.Filter) {
@@ -64,7 +64,7 @@ export class FooterDomVm extends DomVm implements IReactFooterDomVm {
     }
 
 }
-export class FooterDomProps extends DomProps<IReactFooterDomVm>{
+export class FooterBoxProps extends BoxProps<IReactFooterBoxVm>{
 }
 
 

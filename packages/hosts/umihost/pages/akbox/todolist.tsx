@@ -3,13 +3,13 @@ import React from 'React'
 
 export default class TodoListDemo extends React.Component {
 
-  private fTodolist = new Todolist.AppDomVm();
+  private fTodolist = new Todolist.AppBoxVm();
   constructor(p) {
     super(p);
     window["xxxx"] = this.fTodolist;
   }
   render() {
     
-    return <div>{this.fTodolist.intoDom()}</div>
+    return <div>{this.fTodolist.intoBox()}</div>
   }
 }

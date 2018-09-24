@@ -1,12 +1,12 @@
 ﻿
 import React from 'React'
-import { DomReact, DomVm, IDomVmConfig, DomProps } from "akbox/dom";
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/dom";
 import jQuery  from 'jquery'
 const $ = jQuery;
-export class AddTodoDomReact extends DomReact<AddTodoDomProps>  {
+export class AddTodoBoxReact extends BoxReact<AddTodoBoxProps>  {
 
 
-    public pSender(): React.ReactElement<any> {
+    public pSender(): React.ReactNode {
         return <div>
             <input type='text'
                 value={this.props.Vm.Text}
@@ -26,21 +26,21 @@ export class AddTodoDomReact extends DomReact<AddTodoDomProps>  {
 
 }
 
-export interface IReactAddTodoDomVm extends DomVm {
+export interface IReactAddTodoBoxVm extends BoxVm {
     Text: string;
     add();
 }
 
-export interface IAddTodoDomConfig extends IDomVmConfig {
+export interface IAddTodoBoxConfig extends IBoxVmConfig {
     Text: string;
 
 }
 
-export class AddTodoDomVm extends DomVm implements IReactAddTodoDomVm {
-    public ReactType = AddTodoDomReact;
+export class AddTodoBoxVm extends BoxVm implements IReactAddTodoBoxVm {
+    public ReactType = AddTodoBoxReact;
     public Text: string;
 
-    public constructor(config?: IAddTodoDomConfig) {
+    public constructor(config?: IAddTodoBoxConfig) {
         super(config);
         if (config) {
             this.Text = config.Text;
@@ -54,7 +54,7 @@ export class AddTodoDomVm extends DomVm implements IReactAddTodoDomVm {
 }
 
 
-export class AddTodoDomProps extends DomProps<IReactAddTodoDomVm>{
+export class AddTodoBoxProps extends BoxProps<IReactAddTodoBoxVm>{
 }
 
 

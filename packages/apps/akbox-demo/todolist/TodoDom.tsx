@@ -1,10 +1,10 @@
 ﻿
 import React from 'React'
-import { DomReact, DomVm, IDomVmConfig, DomProps } from "akbox/dom";
+import { BoxReact, BoxVm, IBoxVmConfig, BoxProps } from "akbox/dom";
 
-export class TodoDomReact extends DomReact<TodoDomProps> {
+export class TodoBoxReact extends BoxReact<TodoDomProps> {
 
-        public pSender(): React.ReactElement<any> {
+        public pSender(): React.ReactNode {
             return <li
                 onClick={() => { this.props.Vm.onClick(); }}
                 style={{
@@ -14,29 +14,26 @@ export class TodoDomReact extends DomReact<TodoDomProps> {
                 {this.props.Vm.Text}
             </li>;
         }
-        protected pComponentDidMount() {
-            super.pComponentDidMount();
-
-        }
+        
     }
 
-    export interface IReactTodoDomVm extends DomVm {
+    export interface IReactTodoBoxVm extends BoxVm {
         onClick();
         Text: string;
         Completed: boolean;
     }
 
-    export interface ITodoDomConfig extends IDomVmConfig {
+    export interface ITodoBoxConfig extends IBoxVmConfig {
          Text: string;
          Completed?: boolean;
     }
 
-    export class TodoDomVm extends DomVm implements IReactTodoDomVm {
-        public ReactType = TodoDomReact;
+    export class TodoBoxVm extends BoxVm implements IReactTodoBoxVm {
+        public ReactType = TodoBoxReact;
         public Text: string;
         public Completed: boolean;
 
-        public constructor(config?: ITodoDomConfig) {
+        public constructor(config?: ITodoBoxConfig) {
             super(config);
             if (config) {
                 this.Text = config.Text;
@@ -53,7 +50,7 @@ export class TodoDomReact extends DomReact<TodoDomProps> {
 
     }
     
-    export class TodoDomProps extends DomProps<IReactTodoDomVm>{
+    export class TodoDomProps extends BoxProps<IReactTodoBoxVm>{
     }
 
 

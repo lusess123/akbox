@@ -1,5 +1,6 @@
 import React from "react";
 import * as event from "akbox/event";
+import {} from 'akbox/'
 
 event.App.GetAppEvent().on("xxxx",(a)=>{
    alert(a);

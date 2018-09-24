@@ -32,11 +32,11 @@ export interface IFunDic {
     [name: string]: Function;
 }
 
-export interface ITDomFun {
-    (dom: DomVm): JSX.Element;
+export interface ITBoxFun {
+    (dom: BoxVm): JSX.Element;
 }
-export interface ITDomConfig {
-    fun?: ITDomFun;
+export interface ITBoxConfig {
+    fun?: ITBoxFun;
     nullNode?: React.ReactNode;
 }
 
@@ -69,7 +69,7 @@ const EmptyVm = {
  * @template S 
  * @template A 
  */
-export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<P,
+export class BoxReact<P extends BoxProps<BoxVm>, S=any> extends React.Component<P,
     S> {
 
     private fIsNoChangeSign = false;
@@ -92,7 +92,7 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
         return this.props.Vm;
     }
 
-    public vM(): DomVm {
+    public vM(): BoxVm {
         return this.props.Vm;
     }
 
@@ -113,7 +113,7 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
         }
     }
 
-    public removeEvent(event?: string, vm?: DomVm) {
+    public removeEvent(event?: string, vm?: BoxVm) {
         if (!vm) {
             vm = this.props.Vm;
         }
@@ -158,12 +158,12 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
         }
     }
 
-    protected _tDom(dom: DomVm, config?: ITDomConfig): React.ReactNode {
+    protected _tDom(dom: BoxVm, config?: ITBoxConfig): React.ReactNode {
         if (config && config.fun) {
             return config.fun(dom);
         } else {
             if (dom) {
-                return dom.intoDom();
+                return dom.intoBox();
             } else {
                 if (config) {
                     if (config.nullNode) {
@@ -220,7 +220,7 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
             this.fIsNoChangeSign = !a;
         });
     };
-    protected pUnInstall(vm?: DomVm): void {
+    protected pUnInstall(vm?: BoxVm): void {
         // this.removeEvent();
         if (vm) {
             // 这样是不行的 没准这个对象还有用呢 vm.getEmit("React").removeAllListeners(); alert("删除所有的事件");
@@ -228,7 +228,7 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
             // if (!vm.IsChange) {  vm.getEmit("React").removeAllListeners();
             vm
                 .getEmit("React")
-                .removeListener(DomVm.fEVENT_CHANGE, this.fEventFun);
+                .removeListener(BoxVm.fEVENT_CHANGE, this.fEventFun);
             //  vm.getEmit("React").removeAllListeners(); } if (!vm.IsListItem) {
             // vm.dispose(); }
         } else {
@@ -383,7 +383,7 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
         }
 
     };
-    protected pSender(): React.ReactElement<any> {
+    protected pSender(): React.ReactNode {
         return <span><pre>{util.circularJson({ ...{}, ...this.vM(), ...{ReactType: util.GetClassName( util.ReactByOpt(this.Vm))},...EmptyVm })}</pre></span>
     };
 
@@ -465,15 +465,15 @@ export class DomReact<P extends DomProps<DomVm>, S=any> extends React.Component<
 }
 
 export interface IChangeEventFun {
-    (val: string, col: DomVm): boolean;
+    (val: string, col: BoxVm): boolean;
 }
 
-export interface IDomVmChangeHandle {
+export interface IBoxVmChangeHandle {
     (val: string, callback?: () => any): boolean;
 }
 
 export interface ICustomRenderFun {
-    (vm: DomVm): React.ReactElement<any>;
+    (vm: BoxVm): React.ReactElement<any>;
 }
 
 export interface ITplReactFun<T> {
@@ -487,11 +487,11 @@ export interface IRegEvent {
 
 }
 
-export interface IRegEventDom extends IRegEvent {
-    DomObj: DomVm;
+export interface IRegEventBox extends IRegEvent {
+    BoxObj: BoxVm;
 }
 
-export interface IDomVmConfig {
+export interface IBoxVmConfig {
     UniId?: string;
     IsMulit?: boolean;
     Height?: number;
@@ -508,8 +508,8 @@ export const view = ({com}:{com:any})=>(constructor: Function)=>{
 }
 
 
-@view({com:DomReact})
-export class DomVm {
+@view({com:BoxReact})
+export class BoxVm {
 
     public static fEVENT_CHANGE: string = "event_change";
    // public ReactType: any = DomReact;
@@ -554,7 +554,7 @@ export class DomVm {
 
     public getOriValue(): string { return this.fOriValue; }
 
-    public constructor(config?: IDomVmConfig) {
+    public constructor(config?: IBoxVmConfig) {
 
         if (config) {
             this.UniId = config.UniId;
@@ -580,19 +580,19 @@ export class DomVm {
         this.listenAppEvent(regData.Name, this.UniId, regData.Fun);
     }
 
-    protected pRegistAppEventByDom(regData: IRegEventDom) {
+    protected pRegistAppEventByDom(regData: IRegEventBox) {
         // this.RegistAppEvent(regData);
-        if (regData.DomObj.UniId == this.UniId) {
+        if (regData.BoxObj.UniId == this.UniId) {
             regData
-                .DomObj
+                .BoxObj
                 .RegistAppEvent(regData);
         } else {
             alert("由于组件的unid不一致 ，导致无法注册 " + regData.Name + "  事件 ");
         }
     }
 
-    public onCustomEvent(fun: Function, sender: DomVm) {
-        this.pRegistAppEventByDom({ DomObj: sender, Fun: fun, Name: "123" });
+    public onCustomEvent(fun: Function, sender: BoxVm) {
+        this.pRegistAppEventByDom({ BoxObj: sender, Fun: fun, Name: "123" });
     }
 
     protected listenAppEvent(name: string, uniId: string, fun: Function) {
@@ -653,10 +653,10 @@ export class DomVm {
         //if (this.fEmit == null)    this.fEmit = new EventEmitter2();
         this
             .pGetEmit("React")
-            .removeAllListeners(DomVm.fEVENT_CHANGE);
+            .removeAllListeners(BoxVm.fEVENT_CHANGE);
     }
 
-    public onChangeHandle(fun: IDomVmChangeHandle): Function {
+    public onChangeHandle(fun: IBoxVmChangeHandle): Function {
         //if (this.fEmit == null)    this.fEmit = new EventEmitter2();
         var __this = this;
         var _fun = function () {
@@ -664,11 +664,11 @@ export class DomVm {
         };
         return this
             .pGetEmit("React")
-            .addListener(DomVm.fEVENT_CHANGE, _fun);
+            .addListener(BoxVm.fEVENT_CHANGE, _fun);
         //  return _fun;
     }
 
-    public intoDom(key?: number, ...children: React.ReactNode[]): React.ReactNode {
+    public intoBox(key?: number, ...children: React.ReactNode[]): React.ReactNode {
         if (this) {
             const _reactType = (this as any).ReactType?(this as any).ReactType:this.constructor["ReactType"];
             if (key || key === 0) {
@@ -687,7 +687,7 @@ export class DomVm {
 
         }
     }
-    public intoDomR(reactType: any, key?: number, childrenNode?: React.ReactNode[]): React.ReactNode {
+    public intoBoxR(reactType: any, key?: number, childrenNode?: React.ReactNode[]): React.ReactNode {
         if (key) {
             this.key = key;
         }
@@ -710,7 +710,7 @@ export class DomVm {
         this.IsChange = true;
         this
             .pGetEmit("React")
-            .emit(DomVm.fEVENT_CHANGE, val, callback);
+            .emit(BoxVm.fEVENT_CHANGE, val, callback);
     }
 
     public async asyncForceUpdate(val: string, ) {
@@ -778,7 +778,7 @@ export class DomVm {
 
                 this
                     .pGetEmit("React")
-                    .emit(DomVm.fEVENT_CHANGE, val, callback);
+                    .emit(BoxVm.fEVENT_CHANGE, val, callback);
 
             }
             return _isCheck;
@@ -879,14 +879,10 @@ export class DomVm {
 
 }
 
-export class DomProps<T extends DomVm> {
+export class BoxProps<T extends BoxVm> {
     public Vm: T;
     public children?: any;
 }
-
-export class DomStates { }
-
-
 
 export function _reg(name: string, path: string, src?: string) {
     if (!src) {
@@ -899,7 +895,7 @@ export function _reg(name: string, path: string, src?: string) {
     }
     ioc.Ioc
         .Current()
-        .RegisterTypeSrc(name, DomVm, path);
+        .RegisterTypeSrc(name, BoxVm, path);
 }
 
 
